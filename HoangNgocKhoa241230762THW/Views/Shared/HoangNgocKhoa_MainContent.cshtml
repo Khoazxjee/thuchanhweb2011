@@ -1,0 +1,28 @@
+@model IEnumerable<Sach>
+
+<div class="section-head">
+    <h3>@ViewBag.TieuDe</h3>
+    <a asp-controller="Home" asp-action="Create">Thêm sách mới</a>
+</div>
+
+<div class="grid">
+    @if (!Model.Any())
+    {
+        <p>Không có sách phù hợp.</p>
+    }
+
+    @foreach (var sach in Model)
+    {
+        <div class="book-card">
+            <img src="@Url.Content("~/images/" + sach.Anh)"
+                 alt="@sach.TenSach" />
+
+            <h2>@sach.TenSach</h2>
+
+            <div class="book-foot">
+                <span class="price">@(sach.Gia?.ToString("0"))</span>
+                <button type="button" class="btn-buy">Thêm vào giỏ</button>
+            </div>
+        </div>
+    }
+</div>

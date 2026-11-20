@@ -1,0 +1,14 @@
+.vs/
+**/bin/
+**/obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.log
+.env
+.env.*
+*.pfx
+*.p12
+Thumbs.db
+.DS_Store

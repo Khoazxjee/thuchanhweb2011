@@ -1,0 +1,42 @@
+@model SachCreateModel
+
+<div class="section-head">
+    <h3>Hoàng Ngọc Khoa - Thêm sách mới</h3>
+</div>
+
+<form asp-controller="Home" asp-action="Create" method="post"
+      style="background: white; padding: 20px; max-width: 480px; border-radius: 8px;">
+    <div asp-validation-summary="All" style="color: #b91c1c;"></div>
+
+    <div style="margin-bottom: 12px;">
+        <label asp-for="MaTL">Thể loại</label><br />
+        <select asp-for="MaTL" asp-items="ViewBag.MaTL">
+            <option value="">Chọn thể loại</option>
+        </select>
+        <span asp-validation-for="MaTL" style="color: #b91c1c;"></span>
+    </div>
+
+    <div style="margin-bottom: 12px;">
+        <label asp-for="TenSach">Tên sách</label><br />
+        <input asp-for="TenSach" />
+        <span asp-validation-for="TenSach" style="color: #b91c1c;"></span>
+    </div>
+
+    <div style="margin-bottom: 12px;">
+        <label asp-for="Gia">Giá (nghìn đồng)</label><br />
+        <input asp-for="Gia" />
+        <span asp-validation-for="Gia" style="color: #b91c1c;"></span>
+    </div>
+
+    <div style="margin-bottom: 12px;">
+        <label asp-for="Anh">Tên file ảnh</label><br />
+        <input asp-for="Anh" />
+        <span asp-validation-for="Anh" style="color: #b91c1c;"></span>
+    </div>
+
+    <button type="submit" class="btn-buy">Create</button>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

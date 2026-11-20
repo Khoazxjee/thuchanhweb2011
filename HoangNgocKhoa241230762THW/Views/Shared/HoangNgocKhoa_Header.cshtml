@@ -1,0 +1,58 @@
+@{
+    var danhSachLoai = ViewBag.DanhSachLoai
+        as IEnumerable<TheLoai> ?? Enumerable.Empty<TheLoai>();
+
+    int? maTLDangChon = ViewBag.MaTLDangChon;
+}
+
+<header class="header">
+    <div class="topbar">
+        <div class="container">
+            <span>Hotline: <b>1900 6789</b> | Miễn phí vận chuyển đơn từ 300.000đ</span>
+            <span>Đăng nhập | Đăng ký</span>
+        </div>
+    </div>
+
+    <div class="header-main">
+        <div class="container">
+            <a asp-controller="Home" asp-action="Index">
+                <img src="~/images/logo.png" alt="BookHub" />
+            </a>
+            <div class="cart-box">Giỏ hàng: 0 sản phẩm - 0đ</div>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="container">
+            <ul class="menu">
+                <li class="@(maTLDangChon == null ? "active" : "")">
+                    <a class="loc-the-loai"
+                       asp-controller="Home"
+                       asp-action="Index"
+                       data-url="@Url.Action("LocTheoLoai", "Home")">
+                        Hoàng Ngọc Khoa
+                    </a>
+                </li>
+
+                @foreach (var loai in danhSachLoai)
+                {
+                    <li class="@(maTLDangChon == loai.MaTL ? "active" : "")">
+                        <a class="loc-the-loai"
+                           asp-controller="Home"
+                           asp-action="Index"
+                           asp-route-maTL="@loai.MaTL"
+                           data-url="@Url.Action("LocTheoLoai", "Home",
+                               new { maTL = loai.MaTL })">
+                            @loai.TenTL
+                        </a>
+                    </li>
+                }
+            </ul>
+
+            <form class="search-box" onsubmit="return false;">
+                <input type="text" placeholder="Tìm sách..." />
+                <button type="button">Tìm</button>
+            </form>
+        </div>
+    </nav>
+</header>
